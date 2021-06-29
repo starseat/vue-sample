@@ -25,8 +25,11 @@ Vue.use(PaperDashboard);
 
 /* eslint-disable no-new */
 new Vue({
-  router,
+  // async created() {
+  //   await store.dispatch("checkUserInfoAction");
+  // },
   store,
+  router,
   render: h => h(App)
 }).$mount("#app");
 

@@ -1,6 +1,7 @@
 // vuex 의 상태를 변경하게 될때의 비지니스 모듈
 import router from "@/router";
 
+
 export default {
   async loginAction({commit}, { userid, password} ) {
     console.log(userid, password);
@@ -24,9 +25,10 @@ export default {
   checkUserInfoAction({commit, state}) {
     if(state.userInfo.userid) {
       // console.log("[vuex router] current path :", router);
-      console.log("[vuex router] current path arguments:", arguments);
       commit("setIsLogin", true);
+      console.log('[checkUserInfoAction] state.currentPath: ', state.currentPath);
       router.push("/"); // 새로고침 시 이전 URL 알아보는거 필요!!!
+
     }
   },
   logoutAction({commit}) {

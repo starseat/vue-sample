@@ -5,5 +5,8 @@ export default {
   },
   getUserInfo(state) {
     return state.userInfo;
+  },
+  getCurrentPath(state) {
+    return state.currentPath;
   }
 }

@@ -20,4 +20,8 @@ router.beforeEach((to, from, next) => {
   next();
 })
 
+router.afterEach((to, from) => {
+  store.commit("setCurrentPath", to.path);
+})
+
 export default router;

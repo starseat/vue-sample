@@ -9,5 +9,8 @@ export default {
     state.userInfo.userid = payload.userid;
     state.userInfo.role = payload.role;
     state.userInfo.level = payload.level;
+  },
+  setCurrentPath(state, path) {
+    state.currentPath = path;
   }
 }

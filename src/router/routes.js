@@ -18,10 +18,14 @@ const routes = [
     path: "/",
     component: DashboardLayout,
     beforeEnter: (to, from, next) => {
+      console.log('[router] store.getters.getCurrentPath: ', store.getters.getCurrentPath );
+      console.log('[router] store.getters.getIsLogin: ', store.getters.getIsLogin );
+
       if (!store.getters.getIsLogin) {
         next("/login");
       }
       next();  // next 는 redirect: "/dashboard"
+      // next(store.getters.getCurrentPath);
     },
     redirect: "/dashboard",
     meta: { auth: true },
