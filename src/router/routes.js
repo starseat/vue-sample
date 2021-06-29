@@ -18,9 +18,6 @@ const routes = [
     path: "/",
     component: DashboardLayout,
     beforeEnter: (to, from, next) => {
-      console.log('[routes.beforeEnter] store.getters.getIsLogin:: ', store.getters.getIsLogin);
-      console.log('[routes.beforeEnter] to:: ', to);
-      console.log('[routes.beforeEnter] from:: ', from);
       if (!store.getters.getIsLogin) {
         next("/login");
       }
@@ -40,30 +37,34 @@ const routes = [
         component: UserProfile
       },
       {
-        path: "notifications",
-        name: "notifications",
-        component: Notifications
-      },
-      {
-        path: "icons",
-        name: "icons",
-        component: Icons
-      },
-      {
-        path: "maps",
-        name: "maps",
-        component: Maps
+        path: "table-list",
+        name: "table-list",
+        component: TableList
       },
       {
         path: "typography",
         name: "typography",
-        component: Typography
+        component: Typography,
+        meta: { minUserLevel : 5 }
       },
       {
-        path: "table-list",
-        name: "table-list",
-        component: TableList
-      }
+        path: "icons",
+        name: "icons",
+        component: Icons,
+        meta: { minUserLevel : 5 }
+      },
+      {
+        path: "maps",
+        name: "maps",
+        component: Maps,
+        meta: { minUserLevel : 5 }
+      },
+      {
+        path: "notifications",
+        name: "notifications",
+        component: Notifications,
+        meta: { minUserLevel : 9 }
+      },
     ]
   },
   {

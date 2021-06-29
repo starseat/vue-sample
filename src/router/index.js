@@ -10,4 +10,14 @@ const router = new VueRouter({
   linkActiveClass: "active"
 });
 
+// 라우팅 권한 설정시 개별 라우팅 처리하면 소스가 길어지니
+// 전역으로 한번에 처리
+router.beforeEach((to, from, next) => {
+  if(to.meta.minUserLevel && to.meta.minUserLevel > store.getters.getUserInfo.level) {
+    alert('접근 권한이 없습니다.');
+    next(from.path);
+  }
+  next();
+})
+
 export default router;

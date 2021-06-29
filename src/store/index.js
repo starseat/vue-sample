@@ -14,7 +14,7 @@ const userInfo = {
 
 const state = {
   isLogin: false,
-  userInfo: (localStorage.getItem("USER_INFO")) ? JSON.parse(localStorage.getItem("USER_INFO")) : userInfo,
+  userInfo: (localStorage.getItem("USER_INFO")) ? JSON.parse(localStorage.getItem("USER_INFO")) : userInfo
 };
 
 export default new VueStore.Store({
