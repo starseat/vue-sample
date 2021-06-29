@@ -13,6 +13,13 @@
       </button>
       <div class="collapse navbar-collapse">
         <ul class="navbar-nav ml-auto">
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <p>{{ userId }}</p>
+            </a>
+
+          </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="ti-panel"></i>
@@ -49,10 +56,28 @@
     </div></nav>
 </template>
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   computed: {
+    ...mapGetters(["getUserInfo"]),
+    userId() {
+      let viewUserId = '';
+
+      switch(this.getUserInfo.role) {
+        case 'admin': {
+          viewUserId = '[관리자] ';
+        } break;
+        case 'manager': {
+          viewUserId = '[매니저] ';
+        } break;
+        default: {
+        } break;
+      }
+
+      viewUserId += this.getUserInfo.userid;
+      return viewUserId;
+    },
     routeName() {
       const { name } = this.$route;
       return this.capitalizeFirstLetter(name);
