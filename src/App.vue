@@ -6,7 +6,16 @@
 </template>
 
 <script>
-export default {};
+import { mapActions } from "vuex";
+
+export default {
+  methods: {
+    ...mapActions(["checkUserInfoAction"]),
+  },
+  async created() {
+    await this.checkUserInfoAction();
+  }
+};
 </script>
 
 <style lang="scss">

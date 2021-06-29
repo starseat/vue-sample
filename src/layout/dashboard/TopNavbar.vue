@@ -29,19 +29,28 @@
             <a class="dropdown-item" href="#">Notification 4</a>
             <a class="dropdown-item" href="#">Another notification</a>
           </drop-down>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="ti-settings"></i>
               <p>
                 Settings
               </p>
             </a>
-          </li>
+          </li> -->
+          <drop-down class="nav-item"
+                     title="Settings"
+                     title-classes="nav-link"
+                     icon="ti-settings">
+            <a class="dropdown-item">setting</a>
+            <a class="dropdown-item" @click.prevent="onLogOut">LogOut</a>
+          </drop-down>
         </ul>
       </div>
     </div></nav>
 </template>
 <script>
+import { mapActions } from "vuex";
+
 export default {
   computed: {
     routeName() {
@@ -55,6 +64,7 @@ export default {
     };
   },
   methods: {
+    ...mapActions(["logoutAction"]),
     capitalizeFirstLetter(string) {
       return string.charAt(0).toUpperCase() + string.slice(1);
     },
@@ -69,6 +79,9 @@ export default {
     },
     hideSidebar() {
       this.$sidebar.displaySidebar(false);
+    },
+    onLogOut() {
+      this.logoutAction();
     }
   }
 };

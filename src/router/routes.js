@@ -10,12 +10,24 @@ import Icons from "@/pages/Icons.vue";
 import Maps from "@/pages/Maps.vue";
 import Typography from "@/pages/Typography.vue";
 import TableList from "@/pages/TableList.vue";
+import Login from "@/pages/Login.vue";
+import store from "@/store";
 
 const routes = [
   {
     path: "/",
     component: DashboardLayout,
+    beforeEnter: (to, from, next) => {
+      console.log('[routes.beforeEnter] store.getters.getIsLogin:: ', store.getters.getIsLogin);
+      console.log('[routes.beforeEnter] to:: ', to);
+      console.log('[routes.beforeEnter] from:: ', from);
+      if (!store.getters.getIsLogin) {
+        next("/login");
+      }
+      next();  // next 는 redirect: "/dashboard"
+    },
     redirect: "/dashboard",
+    meta: { auth: true },
     children: [
       {
         path: "dashboard",
@@ -53,6 +65,10 @@ const routes = [
         component: TableList
       }
     ]
+  },
+  {
+    path: '/login',
+    component: Login
   },
   { path: "*", component: NotFound }
 ];
